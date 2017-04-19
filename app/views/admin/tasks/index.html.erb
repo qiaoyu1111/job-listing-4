@@ -8,6 +8,11 @@
   <% @tasks.each do |task| %>
   <tr>
     <td>
+      <% if task.is_hidden %>
+      (Hidden)
+      <% else %>
+      (Public)
+      <% end %>
       <%= link_to(task.title, admin_task_path(task)) %>
     </td>
     <td>
@@ -17,6 +22,7 @@
     <td>
       <%= task.created_at %>
     </td>
+
   </tr>
   <% end %>
 </table>
