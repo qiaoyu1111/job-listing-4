@@ -58,7 +58,7 @@ class Admin::TasksController < ApplicationController
   private
 
   def require_is_admin
-    if !current_user.admin?
+    if !current_user || !current_user.admin? #多加一個 OR 判斷條件「未登入的使用者」
       flash[:alert] = 'You are not admin'
       redirect_to root_path
     end
