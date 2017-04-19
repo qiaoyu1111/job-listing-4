@@ -43,6 +43,18 @@ class Admin::TasksController < ApplicationController
     redirect_to admin_tasks_path, alert: "Task deleted."
   end
 
+  def publish
+    @task = Task.find(params[:id])
+    @task.hidden!
+    redirect_to :back
+  end
+
+  def hide
+    @task = Task.find(params[:id])
+    @task.hide!
+    redirect_to :back
+  end
+
   private
 
   def require_is_admin

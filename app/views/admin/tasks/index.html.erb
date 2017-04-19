@@ -14,6 +14,12 @@
     <td>
       <%= link_to("Edit", edit_admin_task_path(task)) %>
       <%= link_to("Destroy", admin_task_path(task), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
+
+      <% if task.is_hidden %>
+        <%= link_to("Publish", publish_admin_task_path(task) , :method => :post, :class => "btn btn-xs btn-default") %>
+      <% else %>
+        <%= link_to("Hide", hide_admin_task_path(task), :method => :post, :class => "btn btn-xs btn-default") %>
+      <% end %>
     </td>
     <td>
       <%= task.created_at %>
