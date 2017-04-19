@@ -44,13 +44,6 @@ class Admin::TasksController < ApplicationController
 
   private
 
-  def require_is_admin
-    if current_user.admin?
-      flash[:alert] = 'You are not admin'
-      redirect_to admin_tasks_path
-    end
-  end
-
   def task_params
     params.require(:task).permit(:title, :description)
   end
