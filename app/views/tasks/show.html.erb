@@ -1,7 +1,8 @@
 <div class="col-md-12">
-  <div class="group">
-    <%= link_to("Edit", edit_task_path(@task), class: "btn btn-primary pull-right")%>
-  </div>
   <h2><%= @task.title %></h2>
   <p><%= @task.description %></p>
+</div>
+
+<div class="text-center">
+  <%= link_to("投交设计稿", new_task_resume_path(@task), :style => "font-size: 30px; text-decoration: underline;") %>
 </div>
