@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+
   def index
     @tasks = Task.all
   end
@@ -8,23 +10,35 @@ class TasksController < ApplicationController
   end
 
   def show
-
+    @task = Task.find(params[:id])
   end
 
   def edit
-
+    @task = Task.find(params[:id])
   end
 
   def create
-
+    @task = Task.new(task_params)
+    if @task.save
+      redirect_to tasks_path
+    else
+      render :new
+    end
   end
 
   def update
-
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to tasks_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tasks_path
   end
 
   private
