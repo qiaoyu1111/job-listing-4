@@ -5,3 +5,20 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+puts "這個種子檔會自動建立一個admin帳號, 並且創建 10 個 public tasks, 以及10個hidden tasks"
+
+create_account = User.create([email: 'example@gmail.com', password: '12345678', password_confirmation: '12345678', is_admin: 'true'])
+puts "Admin account created."
+
+
+create_tasks = for i in 1..10 do
+  task.create!([title: "task no.#{i}", description: "這是用種子建立的第 #{i} 個Public工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100, is_hidden: "false"])
+end
+puts "10 Public tasks created."
+
+create_tasks = for i in 1..10 do
+  task.create!([title: "task no.#{i+10}", description: "這是用種子建立的第 #{i+10} 個Hidden工作", wage_upper_bound: rand(50..99)*100, wage_lower_bound: rand(10..49)*100,is_hidden: "true"])
+end
+puts "10 Hidden tasks created."
