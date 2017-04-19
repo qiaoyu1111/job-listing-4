@@ -11,6 +11,11 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+
+    if @task.is_hidden
+      flash[:warning] = "This Task already archived"
+      redirect_to root_path
+    end
   end
 
   def edit
