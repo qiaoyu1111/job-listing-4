@@ -45,7 +45,7 @@ class Admin::TasksController < ApplicationController
 
   def publish
     @task = Task.find(params[:id])
-    @task.hidden!
+    @task.publish!
     redirect_to :back
   end
 
