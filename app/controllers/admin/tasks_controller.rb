@@ -1,5 +1,6 @@
 class Admin::TasksController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :require_is_admin
 
   def index
     @tasks = Task.all
@@ -42,6 +43,13 @@ class Admin::TasksController < ApplicationController
   end
 
   private
+
+  def require_is_admin
+    if !current_user.admin?
+      flash[:alert] = 'You are not admin'
+      redirect_to root_path
+    end
+  end
 
   def task_params
     params.require(:task).permit(:title, :description)
