@@ -41,16 +41,12 @@
         <td> <%= task.wage_lower_bound %> </td>
         <td> <%= task.wage_upper_bound %> </td>
         <td>
-            <%= link_to("Edit", edit_admin_task_path(task)) %>
-            |
-            <%= link_to("Destroy", admin_task_path(task), :method => :delete, :data => { :confirm => "Are you sure?" }) %>
-
-            |
+            <%= link_to edit_admin_task_path(task), class: "btn btn-xs btn-info" do %><i class="fa fa-pencil"></i><% end %>
+            <%= link_to admin_task_path(task), :method => :delete, :class => "btn btn-xs  btn-danger", :data => { :confirm => "Are you sure?" } do %><i class="fa fa-trash-o"></i><% end %>
             <% if task.is_hidden %>
-
-            <%= link_to("Publish", publish_admin_task_path(task) , :method => :post, :class => "btn btn-xs btn-default") %>
-        <% else %>
-            <%= link_to("Hide", hide_admin_task_path(task), :method => :post,  :class => "btn btn-xs btn-default") %>
+            <%= link_to publish_admin_task_path(task) , :method => :post, :class => "btn btn-xs btn-success" do %><i class="fa fa-eye"></i><% end %>
+            <% else %>
+            <%= link_to hide_admin_task_path(task), :method => :post,  :class => "btn btn-xs btn-warning" do %><i class="fa fa-eye-slash"></i><% end %>
             <% end %>
         </td>
         <td>
