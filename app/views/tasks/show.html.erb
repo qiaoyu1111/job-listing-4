@@ -1,8 +1,12 @@
 <div class="col-md-12">
   <h2><%= @task.title %></h2>
-  <p><%= @task.description %></p>
+  <%= simple_format(@task.description) %>
 </div>
 
 <div class="text-center">
-  <%= link_to("投交设计稿", new_task_resume_path(@task), :style => "font-size: 30px; text-decoration: underline;") %>
+  <div class="container">
+    <button type="button" class="btn btn-primary btn-lg">
+      <%= link_to("投交设计稿", new_task_resume_path(@task), :style => "font-size: 30px; color: white; text-decoration: underline;") %>
+    </button>
+  </div>
 </div>
