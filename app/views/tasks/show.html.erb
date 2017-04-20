@@ -1,12 +1,50 @@
+
 <div class="col-md-12">
-  <h2><%= @task.title %></h2>
-  <%= simple_format(@task.description) %>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 </div>
 
-<div class="text-center">
-  <div class="container">
-    <button type="button" class="btn btn-primary btn-lg">
-      <%= link_to("投交设计稿", new_task_resume_path(@task), :style => "font-size: 30px; color: white; text-decoration: underline;") %>
-    </button>
+<div class="container-fluid job-show-page">
+  <div class="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <h3 class="text-center"><%= @task.title %> at </h1>
+    <hr>
+    <div class="task-content">
+      <div class="pull-right">
+        <%= link_to(content_tag(:i, " Back", class: "fa fa-arrow-left"), url_for(:back)) %>
+      </div><br>
+      <p>
+        <span>task Description:</sapn> <br>
+        <%= simple_format(@task.description, class: "task-description") %>
+      </p>
+      <div class="divider"></div>
+      <p>
+        <span>Loaction:</span>
+      </p>
+      <p>
+        <span>Publish Time</span>: <%= time_ago_in_words(@task.created_at) %> ago
+      </p>
+      <p>
+        <span>Contact:</span> <%= @task.contact_email %>
+      </p>
+      <div class="text-center">
+        <% if user_signed_in? %>
+          <% if !current_user.admin? %>
+            <% if current_user && current_user.has_applied?(@task) %>
+              <%= link_to("Has Applied", new_task_resume_path(@task), class: "btn btn-primary disabled") %>
+            <% else %>
+              <%= link_to("Apply Now", new_task_resume_path(@task), class: "btn btn-primary") %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to("Apply Now", new_task_resume_path(@task), class: "btn btn-primary") %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>
